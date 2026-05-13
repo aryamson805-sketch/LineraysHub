@@ -1,25 +1,29 @@
--- Linerays Hub V1 by Anon | Wind UI
-local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/RedzHub/WindUI/main/source"))()
+-- Linerays Hub V1 by Anon | Rayfield Gen2
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
-local Window = WindUI:CreateWindow({
-    Title = "Linerays Hub V1",
-    Subtitle = "by Anon",
-    Logo = "rbxassetid://4483362458",
-    Size = UDim2.fromOffset(580, 460),
-    KeySystem = true
-})
-
--- Key System
-Window:CreateKeySystem({
-    Title = "Linerays Hub V1",
-    Description = "Enter Key",
-    Key = "newmagiclines",
-    Note = "Key: newmagiclines",
-    SaveKey = true
+local Window = Rayfield:CreateWindow({
+    Name = "Linerays Hub V1",
+    LoadingTitle = "Starting",
+    LoadingSubtitle = "by Anon",
+    ConfigurationSaving = {
+        Enabled = true,
+        FolderName = "LineraysHub",
+        FileName = "LineraysConfig"
+    },
+    KeySystem = true,
+    KeySettings = {
+        Title = "Linerays Hub V1",
+        Subtitle = "Key System",
+        Note = "Key: newmagiclines",
+        FileName = "LineraysKey",
+        SaveKey = true,
+        GrabKeyFromSite = false,
+        Key = "newmagiclines"
+    }
 })
 
 -- ==================== TAB 1: RIZZ ====================
-local RizzTab = Window:CreateTab("Rizz")
+local RizzTab = Window:CreateTab("Rizz", 4483362458)
 RizzTab:CreateSection("Rizz Lines - Click to Send")
 
 local rizzLines = {
@@ -44,10 +48,10 @@ for _, line in ipairs(rizzLines) do
 end
 
 -- ==================== TAB 2: SWEAR ====================
-local SwearTab = Window:CreateTab("Swear")
+local SwearTab = Window:CreateTab("Swear", 4483362458)
 SwearTab:CreateSection("Swear Lines - Click to Send")
 
-local swearLines = {"skill issue","get good kid","ratio + L","mad cuz bad","touch grass","you're washed","cry about it","noob alert","bot detected","L player","you're so bad it's funny","keep coping","seethe","stay mad","dog water","negative rizz","0 aura"}
+local swearLines = {"skill issue","get good kid","ratio + L","mad cuz bad","touch grass","you're washed","cry about it","noob alert","bot detected","L player","you're so bad it's funny","keep coping","seethe","stay mad","dog water"}
 
 for _, line in ipairs(swearLines) do
     SwearTab:CreateButton({
@@ -59,10 +63,10 @@ for _, line in ipairs(swearLines) do
 end
 
 -- ==================== TAB 3: SCARY ====================
-local ScaryTab = Window:CreateTab("Scary")
+local ScaryTab = Window:CreateTab("Scary", 4483362458)
 ScaryTab:CreateSection("Scary Lines - Click to Send")
 
-local scaryLines = {"I'm right behind you...","Don't turn around 👀","I can see you","Why are you running?","It's too late now","Look up","Close the door...","They're coming","Sweet dreams...","I never left","I'm under your bed","Look behind you"}
+local scaryLines = {"I'm right behind you...","Don't turn around 👀","I can see you","Why are you running?","It's too late now","Look up","Close the door...","They're coming","Sweet dreams...","I never left"}
 
 for _, line in ipairs(scaryLines) do
     ScaryTab:CreateButton({
@@ -74,7 +78,7 @@ for _, line in ipairs(scaryLines) do
 end
 
 -- ==================== TAB 4: HAPPY ====================
-local HappyTab = Window:CreateTab("Happy")
+local HappyTab = Window:CreateTab("Happy", 4483362458)
 HappyTab:CreateSection("Happy Lines - Click to Send")
 
 local happyLines = {"Yayyy! 😊","Today is amazing!","You're awesome!","Keep smiling!","Best day ever!","Positive vibes only!"}
@@ -89,7 +93,7 @@ for _, line in ipairs(happyLines) do
 end
 
 -- ==================== TAB 5: TROLL ====================
-local TrollTab = Window:CreateTab("Troll")
+local TrollTab = Window:CreateTab("Troll", 4483362458)
 TrollTab:CreateSection("Troll Commands")
 
 TrollTab:CreateButton({Name = "Load Infinite Yield", Callback = function() loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))() end})
@@ -104,33 +108,43 @@ TrollTab:CreateButton({Name = "Godmode", Callback = function()
 end})
 
 -- ==================== TAB 6: COLOUR ====================
-local ColourTab = Window:CreateTab("Colour")
+local ColourTab = Window:CreateTab("Colour", 4483362458)
 ColourTab:CreateSection("UI Themes")
 
-ColourTab:CreateButton({Name = "Dark", Callback = function() Window:SetTheme("Dark") end})
-ColourTab:CreateButton({Name = "Light", Callback = function() Window:SetTheme("Light") end})
-ColourTab:CreateButton({Name = "Purple", Callback = function() Window:SetTheme("Purple") end})
+ColourTab:CreateButton({Name = "Default", Callback = function() Rayfield:ChangeTheme("Default") end})
+ColourTab:CreateButton({Name = "Amethyst", Callback = function() Rayfield:ChangeTheme("Amethyst") end})
+ColourTab:CreateButton({Name = "Ocean", Callback = function() Rayfield:ChangeTheme("Ocean") end})
+ColourTab:CreateButton({Name = "Green", Callback = function() Rayfield:ChangeTheme("Green") end})
+ColourTab:CreateButton({Name = "Light", Callback = function() Rayfield:ChangeTheme("Light") end})
 
 -- ==================== TAB 7: SETTINGS ====================
-local SettingsTab = Window:CreateTab("Settings")
+local SettingsTab = Window:CreateTab("Settings", 4483362458)
 SettingsTab:CreateSection("Hub Settings")
 
-SettingsTab:CreateToggle({Name = "Auto Save Config", Default = true})
-SettingsTab:CreateToggle({Name = "Show Notifications", Default = true})
-SettingsTab:CreateSlider({Name = "WalkSpeed", Min = 16, Max = 300, Default = 16, Callback = function(v)
+SettingsTab:CreateToggle({Name = "Auto Save Config", CurrentValue = true, Callback = function() end})
+SettingsTab:CreateSlider({Name = "WalkSpeed", Range = {16, 300}, Increment = 1, CurrentValue = 16, Callback = function(v)
     local hum = game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
     if hum then hum.WalkSpeed = v end
 end})
 
 -- ==================== TAB 8: AI's ====================
-local AITab = Window:CreateTab("AI's")
+local AITab = Window:CreateTab("AI's", 4483362458)
 AITab:CreateSection("AI Tools")
 
 AITab:CreateButton({Name = "🔥 Rizz AI - Copy Random Line", Callback = function()
-    local bigRizzList = rizzLines
-    local selected = bigRizzList[math.random(1, #bigRizzList)]
+    local selected = rizzLines[math.random(1, #rizzLines)]
     setclipboard(selected)
-    WindUI:Notify("Rizz AI", "Copied to clipboard! Ctrl + V", 5)
+    Rayfield:Notify({
+        Title = "Rizz AI",
+        Content = "Copied to clipboard! Press Ctrl + V",
+        Duration = 5,
+        Image = 4483362458
+    })
 end})
 
-WindUI:Notify("Linerays Hub V1", "Loaded Successfully with Wind UI!", 8)
+Rayfield:Notify({
+    Title = "Linerays Hub V1",
+    Content = "Loaded Successfully with Rayfield Gen2!",
+    Duration = 6,
+    Image = 4483362458
+})
